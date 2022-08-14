@@ -8,7 +8,9 @@ app.set("views", __dirname + "/views");
 app.set("view engine", "jsx");
 app.engine("jsx", require("express-react-views").createEngine());
 
+//router for /champions
 app.use("/champions", require("./controllers/champions"));
+
 
 //GET /
 app.get("/", (req, res) => {
