@@ -21,13 +21,5 @@ app.get("/home", (req, res) => {
     res.status(303).send("get /home stub");
 })
 
-//test
-
-const champion = require("./models/champion-complex");
-app.get("/test", (req, res) => {
-    champion.GetChampion("Belveth").then(champ => res.send(champ))
-})
-
-
 //listen on designated port
 app.listen(process.env.PORT, console.log("Listening on port", process.env.PORT));
