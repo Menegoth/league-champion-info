@@ -2,9 +2,9 @@
 const React = require("react");
 const Default = require("../default");
 
-function index(data) {
+function index({ champions, title }) {
     //format each champ object
-    let championsFormatted = data.champions.map((champion) => {
+    let championsFormatted = champions.map((champion) => {
         return (
             //set up each to have loading splash, name and title
             <div className="col text-center border bg-dark" key={`${champion.id} div`}>
@@ -19,7 +19,7 @@ function index(data) {
 
     return (
         //create a grid with each champion div as a child
-        <Default>
+        <Default title={title}>
             <main>
                 <div className="row m-auto">
                     {championsFormatted}
