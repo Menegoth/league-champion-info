@@ -1,23 +1,23 @@
-//import fetch
+//dependencies
 const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
+const gameVersion = require("./game-version");
 
-//create empty array of champion objects
-const championObjects = []
+//async function to get simple champion data
+async function GetChampionsArray() {
 
-//fetch array of versions
-fetch("https://ddragon.leagueoflegends.com/api/versions.json", {method: "Get"})
-    .then(res => res.json())
-    .then(json => {
-        //fetch simple champion info json using newest version
-        fetch(`https://ddragon.leagueoflegends.com/cdn/${json[0]}/data/en_US/champion.json`, {method: "Get"})
-        .then(res => res.json())
-        .then(json => {
-            //order list of keys based on object's name property and assign each object to the empty array
-            Object.keys(json.data).sort((a, b) => json.data[a].name > json.data[b].name ? 1 : -1).forEach(champ => {
-                championObjects.push(json.data[champ]);
-            })
-        })
+    //get most recent game version
+    const version = await gameVersion.GetGameVersion();
+    //fetch object of simple champion data
+    const res = await (await fetch(`https://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/champion.json`)).json()
+
+    //map res.data keys array to champion objects array to create an array for each champion
+    const championObjects = Object.keys(res.data).map(key => {
+        return res.data[key];
     })
 
-//export champion array of champion objects
-module.exports = championObjects;
+    //return array
+    return championObjects;
+
+}
+
+module.exports.GetChampionsArray = GetChampionsArray;

@@ -1,9 +1,10 @@
 const router = require("express").Router();
-const champions = require("../models/champion-simple.js");
+const championsSimple = require("../models/champion-simple");
 
 //GET /champions
 router.get("/", (req, res) => {
-    res.status(303).render("champions/index", { champions: champions })
+    //wait for champions array fetch then load page passing array as data
+    championsSimple.GetChampionsArray().then(champions => res.status(303).render("champions/index", { champions: champions }));
 });
 
 module.exports = router;
