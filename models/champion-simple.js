@@ -5,7 +5,7 @@ const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fet
 const championObjects = []
 
 //fetch array of versions
-fetch("https://ddragon.leagueoflegends.com/api/versions.json")
+fetch("https://ddragon.leagueoflegends.com/api/versions.json", {method: "Get"})
     .then(res => res.json())
     .then(json => {
         //fetch simple champion info json using newest version

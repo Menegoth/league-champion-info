@@ -11,11 +11,15 @@ app.engine("jsx", require("express-react-views").createEngine());
 //router for /champions
 app.use("/champions", require("./controllers/champions"));
 
-
-//GET /
+//GET / and redirect to /home
 app.get("/", (req, res) => {
-    res.status(303).send("get / stub");
+    res.status(302).redirect("/home");
 });
+
+//GET /home
+app.get("/home", (req, res) => {
+    res.status(303).send("get /home stub");
+})
 
 
 //listen on designated port
