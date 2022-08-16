@@ -3,7 +3,7 @@ const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fet
 const gameVersion = require("./game-version")
 
 //async function to fetch specific champion data
-async function GetChampion(champion) {
+async function GetChampionComplex(champion) {
 
     //get most recent game version
     const version = await gameVersion.GetGameVersion();
@@ -15,6 +15,11 @@ async function GetChampion(champion) {
     Object.keys(Object.values(res.data)[0]).forEach(key => {
         championData[key] = Object.values(res.data)[0][key];
     });
+
+    //use regex to remove tags in spell descriptions
+    championData.spells.forEach(spell => {
+        spell.description = spell.description.replace(/\s*\<.*?\>\s*/g, ' ')
+    })
     
     //return object of champion data
     return championData;
@@ -22,4 +27,4 @@ async function GetChampion(champion) {
 }
 
 //export
-module.exports.GetChampion = GetChampion;
+module.exports.GetChampionComplex = GetChampionComplex;
