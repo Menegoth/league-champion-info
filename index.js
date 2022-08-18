@@ -23,3 +23,9 @@ app.get("/home", (req, res) => {
 
 //listen on designated port
 app.listen(process.env.PORT, console.log("Listening on port", process.env.PORT));
+
+//todo
+//champions/:champion
+//404
+//home w/ navbar & random champion buttons
+//items
