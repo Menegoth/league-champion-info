@@ -3,10 +3,11 @@ const React = require("react");
 const Default = require("../default");
 const Stats = require("./stats");
 
-function champion({ champion }) {
-
+function champion({ champion, title }) {
+    //format page with splash, lore and stats
+    //stats uses other view
     return (
-        <Default title={champion.name} color="bg-dark">
+        <Default title={title} color="bg-dark">
             <main>
                 <a className="text-decoration-none bg-secondary text-white p-1 my-1 rounded-2" href="/champions"><i className="bi bi-arrow-left-circle"/> Back To Champions Page</a>
                 <div className="text-center">

@@ -18,8 +18,11 @@ async function GetChampionComplex(champion) {
 
     //use regex to remove tags in spell descriptions
     championData.spells.forEach(spell => {
-        spell.description = spell.description.replace(/\s*\<.*?\>\s*/g, ' ')
+        spell.description = spell.description.replace(/\s*\<.*?\>\s*/g, ' ');
     })
+
+    //use regex to remove tags in champ descriptions
+    championData.lore = championData.lore.replace(/\s*\<.*?\>\s*/g, ' ');
     
     //return object of champion data
     return championData;
